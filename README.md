@@ -1,6 +1,6 @@
 Raw_version文档
 ===============
-Linux下C++轻量级Web服务器，助力初学者快速实践网络编程，搭建属于自己的服务器.
+Linux下C++轻量级Web服务器.
 
 * 使用**线程池 + epoll(ET和LT均实现) + 模拟Proactor模式**的并发模型
 * 使用**状态机**解析HTTP请求报文，支持解析**GET和POST**请求
@@ -74,22 +74,22 @@ Linux下C++轻量级Web服务器，助力初学者快速实践网络编程，搭
 
 > * I/O复用方式，listenfd和connfd可以使用不同的触发模式，代码中使用LT + LT模式，可以自由修改与搭配.
 
-- [x] LT + LT模式
+- [ ] LT + LT模式
 	* listenfd触发模式，关闭main.c中listenfdET，打开listenfdLT
-	    
+	  
 	    ```C++
 	    26 //#define listenfdET       //边缘触发非阻塞
 	    27 #define listenfdLT         //水平触发阻塞
 	    ```
 	* listenfd触发模式，关闭http_conn.cpp中listenfdET，打开listenfdLT
-	    
+	  
 	    ```C++
 	    10 //#define listenfdET       //边缘触发非阻塞
 	    11 #define listenfdLT         //水平触发阻塞
 	    ```
 
 	* connfd触发模式，关闭http_conn.cpp中connfdET，打开connfdLT
-	    
+	  
 	    ```C++
 	    7 //#define connfdET       //边缘触发非阻塞
 	    8 #define connfdLT         //水平触发阻塞
@@ -97,21 +97,21 @@ Linux下C++轻量级Web服务器，助力初学者快速实践网络编程，搭
 
 - [ ] LT + ET模式
 	* listenfd触发模式，关闭main.c中listenfdET，打开listenfdLT
-	    
+	  
 	    ```C++
 	    26 //#define listenfdET       //边缘触发非阻塞
 	    27 #define listenfdLT         //水平触发阻塞
 	    ```
 	
 	* listenfd触发模式，关闭http_conn.cpp中listenfdET，打开listenfdLT
-	    
+	  
 	    ```C++
 	    10 //#define listenfdET       //边缘触发非阻塞
 	    11 #define listenfdLT         //水平触发阻塞
 	    ```
 
 	* connfd触发模式，打开http_conn.cpp中connfdET，关闭connfdLT
-	    
+	  
 	    ```C++
 	    7 #define connfdET       //边缘触发非阻塞
 	    8 //#define connfdLT         //水平触发阻塞
@@ -121,7 +121,7 @@ Linux下C++轻量级Web服务器，助力初学者快速实践网络编程，搭
 
 - [x] 同步写入日志
 	* 关闭main.c中ASYNLOG，打开同步写入SYNLOG
-	    
+	  
 	    ```C++
 	    25 #define SYNLOG //同步写日志
 	    26 //#define ASYNLOG   /异步写日志
@@ -129,7 +129,7 @@ Linux下C++轻量级Web服务器，助力初学者快速实践网络编程，搭
 
 - [ ] 异步写入日志
 	* 关闭main.c中SYNLOG，打开异步写入ASYNLOG
-	    
+	  
 	    ```C++
 	    25 //#define SYNLOG //同步写日志
 	    26 #define ASYNLOG   /异步写日志
